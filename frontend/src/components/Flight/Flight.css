@@ -1,0 +1,10 @@
+.flight-card {
+  margin: 0.5rem;
+  width: 90%;
+}
+
+.flight-link {
+  font-size: 1rem;
+  font-weight: bold;
+  color: rgb(4, 136, 17) !important;
+}

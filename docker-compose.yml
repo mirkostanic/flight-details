@@ -1,0 +1,40 @@
+version: '3.7'
+services:
+  database:
+    image: mongo:latest
+    container_name: database
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: 8TZ2uWGi4DAaxIQP
+      MONGO_INITDB_DATABASE: inflight
+    ports:
+      - 27018:27018
+    networks:
+      - inflightnetwork
+    volumes:
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+      - ./database-volume:/data/db
+  backend:
+    image: node:14
+    container_name: backend
+    build: ./backend
+    restart: always
+    ports:
+      - 3001:3001
+    networks:
+      - inflightnetwork
+    depends_on:
+      - database
+  frontend:
+    image: node:latest
+    container_name: frontend
+    build: ./frontend
+    restart: always
+    ports:
+      - 3000:3000
+    networks:
+      - inflightnetwork
+networks:
+  inflightnetwork:
+    driver: bridge
