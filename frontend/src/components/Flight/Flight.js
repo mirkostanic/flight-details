@@ -18,13 +18,6 @@ export default class Flight extends Component {
     this.handleClose = this.handleClose.bind(this);
   }
 
-  getTime = (iso_time) => {
-    const date = new Date(iso_time);
-    let hours = date.getHours();
-    let minutes = "0" + date.getMinutes();
-    return hours + ":" + minutes.substr(-2);
-  }
-
   handleOpen() {
     this.setState({open: true});
   };
@@ -45,7 +38,7 @@ export default class Flight extends Component {
     this.handleClose();
   }
 
-  getTime = (datetime) => {
+  getTime(datetime) {
     const date = new Date(datetime);
     let hours = date.getHours();
     let minutes = "0" + date.getMinutes();
